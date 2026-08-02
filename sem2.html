@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to KLE Technological University</title>
+<style>
+    :root {
+        --red: #c62828;
+        --red-dark: #a01f1f;
+        --gray: #9e9e9e;
+        --navy: #1c3f6e;
+        --text-muted: #6b6b6b;
+        --border: #e0e0e0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f4f4;
+        color: #333;
+    }
+
+    .page {
+        max-width: 980px;
+        margin: 0 auto;
+        background: #ffffff;
+        min-height: 100vh;
+    }
+
+    /* ===== Top bar ===== */
+    .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 24px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #e07b1a 0%, #e07b1a 50%, var(--navy) 50%, var(--navy) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        flex-shrink: 0;
+    }
+
+    .brand-text .uni-name {
+        font-size: 18px;
+        font-weight: bold;
+        color: #222;
+        line-height: 1.2;
+    }
+
+    .brand-text .subtitle {
+        font-size: 12px;
+        color: var(--text-muted);
+    }
+
+    .search-again {
+        background: var(--red);
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    /* ===== Student header ===== */
+    .student-header {
+        display: flex;
+        height: 120px;
+        position: relative;
+    }
+
+    .student-left {
+        background-color: var(--red);
+        color: white;
+        width: 35%;
+        display: flex;
+        align-items: center;
+        padding-left: 40px;
+        font-size: 22px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .student-right {
+        background-color: var(--gray);
+        width: 65%;
+        position: relative;
+        padding: 14px 24px;
+    }
+
+    .student-id {
+        position: absolute;
+        top: 14px;
+        right: 24px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+    }
+
+    .student-sem {
+        position: absolute;
+        bottom: 14px;
+        right: 24px;
+        color: #fff;
+        font-size: 13px;
+    }
+
+    .profile {
+        position: absolute;
+        left: 35%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        border: 4px solid white;
+        background-color: #111;
+        z-index: 2;
+    }
+
+    /* ===== Stats row ===== */
+    .stats-row {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 24px;
+        gap: 16px;
+    }
+
+    .stat-card {
+        flex: 1;
+        min-width: 140px;
+        padding: 4px 16px;
+        border-right: 1px solid var(--border);
+    }
+
+    .stat-card:last-child { border-right: none; }
+
+    .stat-label {
+        font-size: 13px;
+        color: #444;
+        display: inline-block;
+        border-bottom: 2px solid var(--red);
+        padding-bottom: 3px;
+        margin-bottom: 10px;
+    }
+
+    .stat-value {
+        font-size: 26px;
+        font-weight: bold;
+        color: #222;
+    }
+
+    .congrats {
+        text-align: center;
+        color: #777;
+        letter-spacing: 6px;
+        font-size: 13px;
+        margin: 4px 0 20px;
+    }
+
+    /* ===== Result meta row ===== */
+    .result-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 24px 14px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .result-meta h2 {
+        font-size: 15px;
+        font-weight: bold;
+        margin: 0;
+        color: #222;
+    }
+
+    .print-btn {
+        background: var(--red);
+        color: #fff;
+        border: none;
+        padding: 9px 18px;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    /* ===== Result table section ===== */
+    .result-section {
+        padding: 20px 24px 8px;
+    }
+
+    .result-label-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .result-label-row .label {
+        font-weight: bold;
+        color: #222;
+        font-size: 15px;
+    }
+
+    .sgpa-badge {
+        background: var(--red);
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 4px 10px;
+        border-radius: 3px;
+    }
+
+    table.result-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+
+    .result-table thead th {
+        text-align: left;
+        color: var(--navy);
+        font-size: 11px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        padding: 10px 8px;
+        border-bottom: 2px solid var(--border);
+    }
+
+    .result-table thead th.num { text-align: right; }
+
+    .result-table tbody td {
+        padding: 12px 8px;
+        color: var(--navy);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .result-table tbody td.num { text-align: right; }
+
+    /* ===== Disclaimer ===== */
+    .disclaimer {
+        margin: 28px 24px 0;
+        padding-top: 18px;
+        border-top: 1px solid var(--border);
+        text-align: center;
+    }
+
+    .disclaimer h3 {
+        color: var(--red);
+        font-size: 13px;
+        letter-spacing: 4px;
+        margin: 0 0 14px;
+    }
+
+    .disclaimer p {
+        font-size: 11.5px;
+        color: #666;
+        line-height: 1.7;
+        text-align: left;
+        margin: 0;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 24px 24px;
+        font-size: 11.5px;
+        color: #888;
+    }
+
+    .footer a {
+        color: #888;
+        text-decoration: none;
+        margin-left: 4px;
+    }
+
+    @media (max-width: 640px) {
+        .student-left { font-size: 16px; padding-left: 20px; }
+        .stats-row { flex-direction: column; }
+        .stat-card { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+        .result-table { font-size: 11px; }
+    }
+</style>
+</head>
+<body>
+<div class="page">
+
+    <!-- Top Bar -->
+    <div class="topbar">
+        <div class="brand">
+            <div class="brand-mark">KLE</div>
+            <div class="brand-text">
+                <div class="uni-name">KLE Technological University</div>
+                <div class="subtitle">Semester End Examination Results</div>
+            </div>
+        </div>
+        <button class="search-again">SEARCH AGAIN</button>
+    </div>
+
+    <!-- Student header -->
+    <div class="student-header">
+        <div class="student-left">N B VARUN</div>
+        <div class="profile"></div>
+        <div class="student-right">
+            <div class="student-id">01FE25BCS272</div>
+            <div class="student-sem">B.E - CS, Semester 2</div>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-label">Credits Registered</div><br>
+            <span class="stat-value">20</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Credits Earned</div><br>
+            <span class="stat-value">20</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">SGPA</div><br>
+            <span class="stat-value">7.93</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">CGPA</div><br>
+            <span class="stat-value">8.27</span>
+        </div>
+    </div>
+
+    <div class="congrats">Congratulations!</div>
+
+    <div class="result-meta">
+        <h2>May 2026 - Provisional Result</h2>
+        <button class="print-btn">PRINT PROVISIONAL GRADE CARD 🖶</button>
+    </div>
+
+    <!-- Result table -->
+    <div class="result-section">
+        <div class="result-label-row">
+            <span class="label">Result</span>
+            <span class="sgpa-badge">SGPA 7.93</span>
+        </div>
+
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Name</th>
+                    <th class="num">Credits Reg.</th>
+                    <th class="num">Credits Earned</th>
+                    <th class="num">Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>25ECRF101</td>
+                    <td>Engineering Exploration</td>
+                    <td class="num">4.00</td>
+                    <td class="num">4.00</td>
+                    <td class="num">A</td>
+                </tr>
+                <tr>
+                    <td>25ECSF102</td>
+                    <td>Computer Organization and Architecture</td>
+                    <td class="num">3.00</td>
+                    <td class="num">3.00</td>
+                    <td class="num">B</td>
+                </tr>
+                <tr>
+                    <td>25ECSF103</td>
+                    <td>Data Structures</td>
+                    <td class="num">2.00</td>
+                    <td class="num">2.00</td>
+                    <td class="num">C</td>
+                </tr>
+                <tr>
+                    <td>25ECSF104</td>
+                    <td>Data Structures Lab</td>
+                    <td class="num">2.00</td>
+                    <td class="num">2.00</td>
+                    <td class="num">B</td>
+                </tr>
+                <tr>
+                    <td>25EMAB103</td>
+                    <td>Linear Algebra</td>
+                    <td class="num">3.50</td>
+                    <td class="num">3.50</td>
+                    <td class="num">B</td>
+                </tr>
+                <tr>
+                    <td>25EMAB104</td>
+                    <td>Probability and Statistics</td>
+                    <td class="num">3.00</td>
+                    <td class="num">3.00</td>
+                    <td class="num">C</td>
+                </tr>
+                <tr>
+                    <td>25EPHB105</td>
+                    <td>Engineering Physics</td>
+                    <td class="num">1.50</td>
+                    <td class="num">1.50</td>
+                    <td class="num">C</td>
+                </tr>
+                <tr>
+                    <td>25EPHB106</td>
+                    <td>Applied Physics Lab</td>
+                    <td class="num">1.00</td>
+                    <td class="num">1.00</td>
+                    <td class="num">A</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+        <h3>DISCLAIMER</h3>
+        <p>
+            The results published on this web site are provisional and are provided for immediate information
+            to the examinees. These results may not be used as official confirmation of your achievement.
+            While all efforts have been made to make the information available on this website as authentic
+            as possible, KLE Technological University, contineo, e-Sutra chronicles Pvt. Ltd or any of their
+            staff will not be responsible for any loss caused by shortcoming, defect or inaccuracy in the
+            information provided on this website. Please contact the Examination Department for the final
+            official results.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div>Copyright © Powered By <a href="#">Contineo</a></div>
+        <div><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></div>
+    </div>
+
+</div>
+</body>
+</html>
